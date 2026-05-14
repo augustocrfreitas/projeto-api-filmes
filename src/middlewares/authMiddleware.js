@@ -7,7 +7,7 @@ const secret = process.env.JWT_SECRET;
 
 const authMiddleware = (req, res, next) => {
     if (!req.headers.authorization) {
-        return res.status(401).json({ message: 'Token não informado' });
+        return res.status(401).json({ message: 'Acesso negado. Você precisa estar logado' });
     }
 
     const token = req.headers.authorization.split(' ')[1];

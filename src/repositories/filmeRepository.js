@@ -1,36 +1,29 @@
-let filmes = [
-    { id: 1, titulo: 'Interestelar', genero: 'Ficção Científica', ano: 2014, nota: 8.6 },
-    { id: 2, titulo: 'O Poderoso Chefão', genero: 'Drama', ano: 1972, nota: 9.2 },
-    { id: 3, titulo: 'Parasita', genero: 'Thriller', ano: 2019, nota: 8.5 },
-    { id: 4, titulo: 'Coringa', genero: 'Drama', ano: 2019, nota: 8.4 },
-    { id: 5, titulo: 'Matrix', genero: 'Ficção Científica', ano: 1999, nota: 8.7 },
-];
+import Filme from '../models/filmeModel.js';
 
 class FilmeRepository {
-    static listaTodos() {
+    static async listaTodos() {
+        const filmes = await Filme.find();
+        console.log(filmes);
         return filmes;
     }
 
-    static buscarPorId(id) {
-        return filmes.find(item => item.id === id);
+    static async buscarPorId(id) {
+        const filme = await Filme.findById(id);
+        return filme;
     }
 
-    static adicionarFilme(novoFilme) {
-        filmes.push(novoFilme);
+    static async adicionarFilme(novoFilme) {
+        const filme = await Filme.create(novoFilme);
+        return filme;
     }
 
-    static alterarFilme(id, novoFilme) {
-        const { titulo, genero, ano, nota } = novoFilme;
-
-        const filme = filmes.find(filme => filme.id === id);
-        filme.titulo = titulo;
-        filme.genero = genero;
-        filme.ano = ano;
-        filme.nota = nota;
+    static async alterarFilme(id, novoFilme) {
+        await Filme.findByIdAndUpdate(id, novoFilme);
     }
 
-    static deletarFilme(id) {
-        filmes = filmes.filter(f => f.id !== id);
+    static async deletarFilme(id) {
+        const filme = await Filme.findByIdAndDelete(id);
+        return filme;
     }
 }
 

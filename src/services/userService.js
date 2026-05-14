@@ -29,7 +29,7 @@ class UserService {
         const user = { name, email, password: hash };
         await UserRepo.adicionarUser(user);
 
-        const token = jwt.sign({ email, name }, secret, { expiresIn: '2m' });
+        const token = jwt.sign({ email, name }, secret, { expiresIn: '1d' });
 
         return { name, email, token };
     }
@@ -49,7 +49,7 @@ class UserService {
 
         const name = isUser.name;
 
-        const token = jwt.sign({ email, name }, secret, { expiresIn: '30s' });
+        const token = jwt.sign({ email, name }, secret, { expiresIn: '1d' });
 
         return { name, email, token };
     }

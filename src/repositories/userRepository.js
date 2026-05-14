@@ -1,17 +1,18 @@
-let usuarios = [];
+import User from '../models/userModel.js';
 
 class UserRepo {
-    static buscar() {
+    static async buscar() {
+        const usuarios = await User.find();
         return usuarios;
     }
 
-    static buscarPorEmail(email) {
-        const usuario = usuarios.find(f => f.email === email);
+    static async buscarPorEmail(email) {
+        const usuario = await User.findOne({ email });
         return usuario;
     }
 
-    static adicionarUser(user) {
-        usuarios.push(user);
+    static async adicionarUser(user) {
+        await User.create(user);
         return user;
     }
 }
