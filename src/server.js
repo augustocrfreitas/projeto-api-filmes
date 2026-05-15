@@ -1,10 +1,11 @@
 import filmeRoutes from './routes/filmeRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import connectDb from './database/connection.js';
-import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from './docs/swagger.js';
 import express from 'express';
 import dotenv from 'dotenv';
+
+import { apiReference } from '@scalar/express-api-reference';
+import { swaggerSpec } from './docs/swagger.js';
 
 dotenv.config();
 
@@ -15,7 +16,14 @@ app.use(express.json());
 
 connectDb();
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use(
+    '/docs',
+    apiReference({
+        spec: {
+            content: swaggerSpec,
+        },
+    }),
+);
 
 app.use('/api/filmes', filmeRoutes);
 app.use('/api/users', userRoutes);
