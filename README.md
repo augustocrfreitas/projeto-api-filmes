@@ -2,7 +2,7 @@
 
 API RESTful para gerenciamento de filmes com autenticação JWT, validação de dados, filtros, paginação e documentação interativa.
 
-🌐 **Deploy:** [https://projeto-api-filmes-production.up.railway.app](https://projeto-api-filmes-production.up.railway.app)
+🌐 **Deploy:** [https://projeto-api-filmes-production.up.railway.app](https://projeto-api-filmes-production.up.railway.app/api/filmes)
 
 📖 **Documentação interativa:** [https://projeto-api-filmes-production.up.railway.app/docs](https://projeto-api-filmes-production.up.railway.app/docs)
 
