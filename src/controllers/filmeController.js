@@ -3,7 +3,12 @@ import FilmeService from '../services/filmeService.js';
 class FilmeController {
     static async buscar(req, res) {
         try {
-            const filmes = await FilmeService.buscarFilmes();
+            const page = Number(req.query.page) || 1;
+            const limit = Number(req.query.limit) || 10;
+            const skip = (page - 1) * limit;
+
+            const { titulo, genero, ano } = req.query;
+            const filmes = await FilmeService.buscarFilmes({ titulo, genero, ano, skip, limit });
             res.status(200).json(filmes);
         } catch (error) {
             res.status(400).json({ erro: error.message });

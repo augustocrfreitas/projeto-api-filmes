@@ -1,8 +1,14 @@
 import FilmeRepository from '../repositories/filmeRepository.js';
 
 class FilmeService {
-    static async buscarFilmes() {
-        return await FilmeRepository.listaTodos();
+    static async buscarFilmes({ titulo, genero, ano, skip, limit }) {
+        const filtros = {};
+
+        if (titulo) filtros.titulo = titulo;
+        if (genero) filtros.genero = genero;
+        if (ano) filtros.ano = Number(ano);
+
+        return await FilmeRepository.listaTodos(filtros, skip, limit);
     }
 
     static async buscarPorId(id) {

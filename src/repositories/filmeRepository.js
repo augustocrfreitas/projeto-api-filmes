@@ -1,9 +1,8 @@
 import Filme from '../models/filmeModel.js';
 
 class FilmeRepository {
-    static async listaTodos() {
-        const filmes = await Filme.find();
-        console.log(filmes);
+    static async listaTodos(filtros, skip, limit) {
+        const filmes = await Filme.find(filtros).skip(skip).limit(limit);
         return filmes;
     }
 
